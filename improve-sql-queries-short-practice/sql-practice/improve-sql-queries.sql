@@ -4,10 +4,10 @@
 -- Query: Select all cats that have a toy with an id of 5
 
     -- Your code here
-SELECT cats.name FROM cat_toys
-JOIN cats ON (cat_toys.cat_id = cats.id)
-JOIN toys ON (cat_toys.toy_id = toys.id)
-WHERE cat_toys.toy_id = 5;
+-- SELECT cats.name FROM cat_toys
+-- JOIN cats ON (cat_toys.cat_id = cats.id)
+-- JOIN toys ON (cat_toys.toy_id = toys.id)
+-- WHERE cat_toys.toy_id = 5;
 
 -- Paste your results below (as a comment):
 -- Run Time: real 0.000 user 0.000604 sys 0.000000
@@ -19,26 +19,29 @@ WHERE cat_toys.toy_id = 5;
 ----------
 -- Query:
 
-EXPLAIN QUERY PLAN SELECT cats.name FROM cat_toys
-JOIN cats ON (cat_toys.cat_id = cats.id)
-JOIN toys ON (cat_toys.toy_id = toys.id)
-WHERE cat_toys.toy_id = 5;
+-- EXPLAIN QUERY PLAN SELECT cats.name FROM cat_toys
+-- JOIN cats ON (cat_toys.cat_id = cats.id)
+-- JOIN toys ON (cat_toys.toy_id = toys.id)
+-- WHERE cat_toys.toy_id = 5;
 
 
 
 -- Paste your results below (as a comment):
+
 -- QUERY PLAN
-|--SEARCH TABLE toys USING INTEGER PRIMARY KEY (rowid=?)
-|--SCAN TABLE cat_toys
-`--SEARCH TABLE cats USING INTEGER PRIMARY KEY (rowid=?)
+--SEARCH TABLE toys USING INTEGER PRIMARY KEY (rowid=?)
+--SCAN TABLE cat_toys
+--SEARCH TABLE cats USING INTEGER PRIMARY KEY (rowid=?)
 -- Run Time: real 0.001 user 0.000052 sys 0.000000
 
 -- What do your results mean?
 
     -- Was this a SEARCH or SCAN?
+
 -- Both Actions
 
     -- What does that mean?
+
 --  Searching for every record, and Scanning a data point that matches the Query.
 
 
@@ -50,6 +53,8 @@ WHERE cat_toys.toy_id = 5;
     -- Your code here
 
 -- Paste your results below (as a comment):
+-- Run Time: real 0.001 user 0.000052 sys 0.000000
+
 
 
 
@@ -61,6 +66,8 @@ WHERE cat_toys.toy_id = 5;
 -- Create index:
 
     -- Your code here
+    -- CREATE INDEX index_cat_on_cat_id ON cat_toys(cat_id);
+    -- CREATE INDEX index_cat_on_toy_id ON cat_toys(toy_id);
 
 -- Analyze Query:
     -- Your code here
@@ -83,6 +90,11 @@ WHERE cat_toys.toy_id = 5;
     -- Your code here
 
 -- Paste your results below (as a comment):
+-- QUERY PLAN
+-- --SEARCH TABLE toys USING INTEGER PRIMARY KEY (rowid=?)
+-- --SEARCH TABLE cat_toys USING INDEX index_cat_on_toy_id (toy_id=?)
+-- --SEARCH TABLE cats USING INTEGER PRIMARY KEY (rowid=?)
+-- Run Time: real 0.000 user 0.000093 sys 0.000000
 
 
 -- Analyze Results:
