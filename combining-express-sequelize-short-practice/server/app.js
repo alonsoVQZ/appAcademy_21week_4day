@@ -1,6 +1,7 @@
 // Instantiate Express and the application - DO NOT MODIFY
 const express = require('express');
 const app = express();
+ 
 
 // Import environment variables in order to connect to database - DO NOT MODIFY
 require('dotenv').config();
